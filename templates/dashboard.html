@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}Rak Buku Page{% endblock %}
+
+{% block content %}
+{% if session.logged_in %}
+  <div class="py-5 bg-[#f5b693]">
+    <div class="bg-white w-[95%] px-5 py-10 mx-auto rounded-xl shadow-md">
+      <h2 class="text-center text-3xl mb-4 font-bold">Selamat datang di Rak Buku</h2>
+
+      <table class="w-full inset text-sm">
+        <thead class="bg-[#83000e] text-white">
+          <tr class="grid grid-cols-[0.4fr_1.5fr_1.5fr_0.8fr_1.2fr_1fr] px-4 py-4">
+            <th>ID</th>
+            <th>Judul Buku</th>
+            <th>Penulis</th>
+            <th>Tahun Terbit</th>
+            <th>File</th>
+            <th>Aksi</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for book in books %}
+            <tr class="grid grid-cols-[0.4fr_1.5fr_1.5fr_0.8fr_1.2fr_1fr] even:bg-slate-200 odd:bg-slate-50 px-4 py-4 items-center">
+              <td>{{ book[0] }}</td>
+              <td>{{ book[1] }}</td>
+              <td>{{ book[2] }}</td>
+              <td>{{ book[3] }}</td>
+              {% if book[4] == None %}
+                <td>-</td>
+              {% else %}
+                <td>{{ pdf }}</td>
+              {% endif %}
+              <td>
+                <a href="/book/edit/{{ book[0] }}" class="px-4 py-2.5 bg-sky-500 font-bold text-white rounded-lg mr-3 hover:no-underline hover:bg-sky-700 active:bg-sky-500 capitalize">Edit</a>
+                <a href="/book/delete/{{ book[0] }}" class="bg-red-500 px-3 py-2.5 font-bold text-white rounded-lg hover:no-underline hover:bg-red-700 active:bg-red-500 capitalize" onclick="return confirm('Apakah Anda ingin menghapus buku ini?');">hapus</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="mt-5">
+        <a href="/book/add" class="bg-green-500 px-3 py-2.5 mr-3 font-bold text-sm hover:no-underline rounded-lg text-white hover:bg-green-700 active:bg-green-500 capitalize">tambah buku</a>
+        <a href="{{ url_for('logout') }}" class="bg-red-500 px-3 py-2.5 font-bold text-sm rounded-lg hover:no-underline text-white hover:bg-red-700 active:bg-red-500 capitalize">keluar</a>
+      </div>
+    <div>
+  </div>
+{% endif %}
+{% endblock %}

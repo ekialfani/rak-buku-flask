@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit Dosen{% endblock %}
+
+{% block content %}
+  <div class="bg-[#ffc9ab] h-screen grid">
+    <form action="/book/edit/{{ book[0] }}" method="POST" class="w-[500px] bg-white m-auto rounded-xl px-4 py-5 shadow-md">
+      <h2 class="text-center text-2xl capitalize font-bold mb-4 text-[#83000e]">edit buku</h2>
+      <div class="mb-4 text-sm">
+      <label for="title" class="capitalize">judul buku</label>
+      <input type="input" class="text-sm w-full border border-slate-900 p-2.5 rounded-md bg-slate-100 focus:outline-none focus:border-[#83000e] focus:ring-2 focus:ring-[#83000e] focus:bg-white focus:text-[#83000e]" placeholder="Title" name="title" value="{{ book[1] }}" required>
+      </div>
+      <div class="mb-4 text-sm">
+      <label for="author" class="capitalize">penulis</label>
+      <input type="input" class="text-sm w-full border border-slate-900 p-2.5 rounded-md bg-slate-100 focus:outline-none focus:border-[#83000e] focus:ring-2 focus:ring-[#83000e] focus:bg-white focus:text-[#83000e]" placeholder="Penulis" name="author" value="{{ book[2] }}" required>
+      </div>
+      <div class="mb-4 text-sm">
+        <label for="published" class="capitalize">tahun terbit</label>
+        <input type="input" class="text-sm w-full border border-slate-900 p-2.5 rounded-md bg-slate-100 focus:outline-none focus:border-[#83000e] focus:ring-2 focus:ring-[#83000e] focus:bg-white focus:text-[#83000e]" placeholder="Tahun Terbit" name="published" value="{{ book[3] }}" required>
+      </div>
+      <div class="mb-4 text-sm">
+        <label class="w-full capitalize">ganti file</label>
+        <input type="file" name="file" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-100 file:text-[#83000e] hover:file:bg-amber-200 hover:file:cursor-pointer" src="{{ book[4] }}">
+      </div>
+      <button type="submit" class="bg-[#83000e] text-white font-bold w-full py-2.5 text-sm rounded-lg capitalize">perbarui</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Login Page{% endblock %}
+
+{% block content %}
+  <div class="grid grid-cols-2 h-screen">
+    <div class="p-5 bg-[#f5b693] h-full">
+      <h2 class="capitalize text-5xl font-bold text-center text-[#83000e]">rak buku</h2>
+      <p class="text-center mb-5 text-[#ad323f] text-lg font-medium">Tempat menyimpan buku bacaan</p>
+      <img
+        class="w-3/4 m-auto"
+        src="{{ url_for('static',filename='images/hero.jpg')}}">
+    </div>
+    <div class="px-5 pt-20">
+    <h2 class="text-center font-inter font-bold text-2xl mb-4">Masuk ke Rak Buku</h2>
+      <form action="{{ url_for('login') }}" method="POST">
+        <div class="mb-4">
+        <label for="username"class="capitalize text-sm font-medium capitalize">nama pengguna</label>
+        <input type="username" class="w-full text-sm p-2.5 border border-slate-900 rounded-md bg-slate-100 focus:outline-none focus:border-[#83000e] focus:ring-2 focus:ring-[#83000e] focus:bg-white focus:text-[#83000e]" placeholder="masukkan nama pengguna" name="username" id="username" required autofocus autocomplete="off">
+        </div>
+        <div class="mb-4">
+        <label for="password" class="capitalize text-sm font-medium capitalize">sandi</label>
+        <input type="password" class="w-full text-sm p-2.5 border border-slate-900 rounded-md bg-slate-100 focus:outline-none focus:border-[#83000e] focus:ring-2 focus:ring-[#83000e] focus:bg-white focus:text-[#83000e]" placeholder="masukkan sandi" name="password" id="password" required>
+        </div>
+        <button type="submit" class="bg-[#83000e] text-white font-bold text-sm py-2.5 px-5 rounded-md capitalize hover:bg-[#63282e]">masuk</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

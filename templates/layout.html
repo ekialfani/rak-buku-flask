@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          'inter': ['Inter', 'sans-serif'],
+        },
+        extend: {
+          colors: {
+            'danger-100': '#fee2e2',
+            'danger-400': '#ef4444',
+            'danger-700': '#b91c1c',
+            'success-100': '#dcfce7',
+            'success-400': '#22c55e',
+            'success-700': '#15803d',
+          },
+          animation: {
+            'hide-message': 'hide 0.3s 2s ease-in-out forwards',
+          },
+          keyframes: {
+            hide: {
+              '0%': {
+                top: '0',
+              },
+              '100%': {
+                top: '-100px',
+              },
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-inter">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="absolute w-full animate-hide-message">
+          <div class="bg-{{category}}-100 border border-{{category}}-400 text-{{category}}-700 px-4 py-3 rounded relative" role="alert">
+            <span class="block sm:inline">{{ message }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg class="fill-current h-6 w-6 text-{{category}}-700" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</body>
+</html>
